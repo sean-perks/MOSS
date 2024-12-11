@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- 
+	Student Name: Sean Perks
+	File Nme: template.html
+	Date: June 28th, 2024
+-->
+	
+<html lang="en">
+<head>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<title>Projects</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Playwrite+BE+VLG:wght@100..400&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+</head>
+<body>
+
+	<div id="container">
+		<!-- Mobile Nav -->
+		<nav class="mobile-nav">
+			<div id="menu-links">
+				<a href="{{ url_for('index') }}">Home</a>
+				<a href="about.html">About</a>
+				<a href="contact.html">Contact Us</a>
+			</div>
+			
+			<a class="menu-icon" onclick="hamburger()">
+				<div>&#9776;</div>
+			</a>
+		</nav>
+		
+		<!-- Use the header area for this website name or logo -->
+		<header id="logo">
+			<a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='logo2.png') }}" alt="MOSS logo"></a>
+		</header>
+		
+		<!-- Use the nav area to add hyperlinks to other pages within the website -->
+		<nav class="tablet-desktop">
+			<ul>
+				<li><a href="{{ url_for('index') }}">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="reservations.html">Reservations</a></li>
+				<li><a href="contact.html">Contact Us</a></li>
+			</ul>
+		</nav>
+		
+
+		
+		<!-- Use the main area to add the main content of the webpage -->
+		<main class="round">
+
+
+			<div class = "tour-grid">
+				{% if proj_info %}
+
+				<article id={{ project_id }}>
+					<div class="article_wrap mobile">
+						<a class="frame" href="{{ url_for('project', proj_id=project_id) }}"><img src="{{ url_for('static', filename='osb.jpg') }}" alt="hebo image" class="round"></a>
+						<ul class="project_details">
+							<li>Project Description: {{ proj_info['Description'] }}</li>
+							<li>Location: {{ proj_info['Location'] }}</li>
+						</ul>
+						<p>Enjoy a walking tour of Portland's days gone by. This walking only tour provides a glimpse into the natural, architectural, and cultural history of downtown Portland.</p>
+					</div>
+					<div class="article_wrap tablet-desktop">
+						<h1>{{ proj_info["Title"] }}</h1>
+						<a href="{{ url_for('project', proj_id=project_id) }}"><img src="{{ url_for('static', filename='hebo_hero.jpg') }}" alt="hebo image" class="round"></a>
+						<h2>Project Description:</h2> 
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ proj_info['Description'] }}</p>
+						<h2>Location:</h2>
+						<div id="map">
+	
+							<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+							integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+							crossorigin=""></script>
+							<script>
+								let map = L.map('map').setView({{ [lat, lon] }}, 13); // Initialize the map at a default location
+			
+								// Load and display tile layers
+								L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,}).addTo(map);
+			
+								var marker = L.marker({{ [lat, lon] }}).addTo(map);
+							</script>
+						</div>
+					</div>	
+				</article>
+				{% endif %}
+				
+			
+
+			</div>	
+				
+			<div class="tablet-desktop">
+				<table><!--Start Table-->
+					<caption><a href="reservations.html">Reserve a Tour Today!</a></caption>
+					<tr><!-- Row 1-->
+						<th>Tour</th>
+						<th>Duration</th>
+						<th>Transportation</th>
+						<th>Food</th>
+						<th>Price</th>
+					</tr>
+					
+					<tr><!-- Row 2-->
+						<td>Downtown</td>
+						<td>2 Hours</td>
+						<td>Walking</td>
+						<td>None</td>
+						<td>$50</td>
+					</tr>
+					
+					<tr><!-- Row 3-->
+						<td>Albina</td>
+						<td>3 hours</td>
+						<td>Walking/Driving</td>
+						<td>Included</td>
+						<td>$80</td>
+					</tr>
+					
+					<tr><!-- Row 4-->
+						<td>Landmarks Tour</td>
+						<td>4 hours</td>
+						<td>Walking/Driving</td>
+						<td>Included</td>
+						<td>$110</td>
+					</tr>
+				</table>
+			</div>
+			
+		</main>
+		
+		<!-- Use the footer area to add website footer content -->
+		<footer>
+			<div class="copyright">
+				<p>&copy; Copyritght 2021. All Rights Reserved.</p>
+				<p><a href="mailto:sales@portlandhistoricaltours.com">sales@portlandhistoricaltours.com</a></p>
+			</div>
+			
+			<div class="social">
+				<a href="https://www.facebook.com/" target="_blank"><img src="images/facebook-logo.png" alt="black and white Facebook logo"></a>
+				<a href="https://www.twitter.com/" target="_blank"><img src="images/twitter-logo.png" alt="black and white Twitter logo"></a>
+			</div>
+		</footer>
+	
+	</div>
+	<script src="{{ url_for('static', filename='script.js') }}"></script> 
+	
+</body>
+</html> 

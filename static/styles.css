@@ -1,0 +1,676 @@
+/*
+Author: Sean Perks
+Date: 07/06/2024
+File Name: styles.css
+*/
+
+/* CSS Reset */
+body, header, nav, main, footer, h1, div, img, ul, figure, figcaption, section, article, aside {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* Style rules for body and images */
+body {
+	background-color: #FFC0CB;
+}
+
+img{
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	border-radius: 0;
+}
+
+#hero img {
+	max-width: 95%;
+	border-radius: 7px 7px 0 0;
+}
+
+/*Style rules for box sizing applies to all elements*/
+* {
+	box-sizing: border-box;
+}
+
+h1 {
+	color:#0a3f25;
+	font-weight: bold;
+	text-align: center;
+}
+/* Begin style rules for mobile viewport */
+/* Style rule for header */
+header {
+	top: 0;
+	background-color: #FFC0CB;
+	height: 120px;
+}
+
+header img {
+	width:7em; 
+	height:7em;
+	border: none;
+	margin: auto;
+	margin-top: 0.5em;
+}
+
+#map {
+    height: 600px; /* Set the height of the map */
+    width: 80%; /* Set the width of the map */
+    margin: auto; /* Center the map */
+    border-radius: 15px; /* Round the edges of the map */
+    overflow: hidden; /* Make sure the map content doesn't spill over the rounded corners */
+    /* Add the wavy border */
+    border: 5px solid transparent; /* Placeholder for border thickness */
+    border-color: #669966;
+
+}
+
+/* Style rules forhamburger menu */
+
+.mobile-nav a {
+	color: #fff;
+	font-family:"Roboto Slab", serif;
+	text-align: center;
+	font-size: 2em;
+	text-decoration: none;
+	padding: 3%;
+	display: block;
+}
+
+.mobile-nav a.menu-icon {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+/* Show mobile class, hide tablet-desktop class and menu links */
+.mobile {
+	display: block;
+}
+
+header img {
+	border-radius: 5%;
+}
+
+.tablet-desktop {
+	display: none;
+}
+
+#menu-links {
+	display: none;
+}
+
+/* Style rules for main content */
+main {
+	max-width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #DBF9DB;
+	padding: 2%;
+	font-size: 1.15em;
+	font-family:"Roboto Slab", serif;
+	border-radius: 7px;
+}
+
+main ul li a {
+	color: #86608E;
+}
+
+.cursive_type {
+		font-family: "Playwrite BE VLG", cursive;
+		font-size: 1.25em;
+		text-align: center;
+		margin: auto;
+	}
+
+.mobile h3 {
+	text-shadow: 4px 4px 10px #86608E;
+	text-align: center;
+}
+
+.mobile h2 {
+	text-align: center;
+	color: #86608E;
+}
+
+.mobile p {
+	color: #a033b6;
+}
+
+article {
+	padding: 2%;
+}
+
+article h3 {
+	text-align: center;
+}
+
+article img {
+	margin: auto;
+}
+
+article ul {
+	margin-left: 10%;
+}
+
+article:nth-of-type(2) {
+	background-color: rgba(204, 204, 204, 0.3);
+}
+
+.tel-res-link {
+	background-color: #9CB071;
+	padding: 2%;
+	margin: 0 auto;
+	width: 70%;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.tel-res-link a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 1.5em;
+	display: block;
+}
+
+.projects {
+	list-style-type: square;
+	margin-left: 10%;
+	color: #86608E;
+}
+ 
+.frame {
+	position: relative;
+	max-width: 450px;
+	margin: 2% auto;
+}
+
+.pic-text {
+	position: absolute;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	width: 100%;
+	padding: 20px;
+	text-align: center;
+	font-family: Courier New;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.contact {
+	margin: 0 auto;
+}
+
+.map {
+	border: 3px solid #000;
+	width: 95%;
+	height: 50%;
+}
+
+.form {
+	margin: 0 auto;
+	margin-top: 2%;
+	width: fit-content;
+	padding: 2%;
+}
+
+.form-grid {
+	margin: 3%;
+	display: grid;
+	grid-template-columns: auto;
+	grid-gap: 10px;
+	}
+	
+#send-message {
+	margin-top: 3%;
+}
+
+.round {
+		border-radius: 7px;
+	}
+
+/* Style rules for form elements */
+
+fieldset {
+
+	background-color: #CFECEC;
+}
+.hi-top {
+	margin-top:10%;
+}
+
+fieldset, input, textarea {
+	margin-bottom: 2%;
+}
+
+input, textarea {
+	margin-bottom: 2%;
+	background-color: #F8F8FF;
+}
+
+fieldset legend {
+	font-weight: bold;
+	font-size: 1.25em;
+}
+
+label {
+	display: block;
+	padding-top: 3%;
+}
+
+form #submit {
+	margin: 0 auto;
+	border: solid;
+	display: block;
+	padding: 2%;
+	background-color: #93E9BE;
+	font-size: 1em;
+	border-radius: 10px;
+}
+
+
+/* Media Query for Tablet Viewport */
+@media screen and (min-width: 630px), print{
+
+	/* Tablet viewport: show tablet-desktop class hide mobile class */
+	.tablet-desktop {
+		display: block;
+	}
+	
+	.mobile, .mobile-nav {
+		display: none;
+	}
+
+	p {
+		color: #1d0522;
+	}
+
+	h2 {
+		text-align: left;
+		color: #770677;
+		font-size: 1.15em;
+		font-family:"Roboto Slab", serif;
+	}
+	
+	/* Tablet Viewport: style rule for header */
+	header {
+		padding-bottom: 2%;
+	}
+	
+	/* Tablet viewport: Style rules for Nav area */
+	nav {
+		padding: 1%;
+		margin-bottom: 1%;
+	}
+
+	nav ul {
+		list-style-type: none;
+		text-align: center;
+	}
+
+	nav li {
+		font-size: 1.5em;
+		font-family:"Roboto Slab", serif;
+		border-top: none;
+		display: inline-block;
+		border-right: 1px solid #fff;
+	}
+	
+	nav li:last-child {
+		border-right: none;
+	}
+	
+	nav li a {
+		display: block;
+		color: #fff;
+		padding: 0.5em 0.75em;
+		text-decoration: none;
+	}
+
+	/* Tablet viewport: style rules for main content area */
+	main {
+		border-radius: 0 0 7px 7px;
+	}
+	
+	.article_wrap {
+		background-color: #F9F6EE;
+		opacity: .7;
+		border-radius: 50%;
+		margin: 2%;
+	}
+
+	.project_details{
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.project_details li {
+		padding: 0.75em 0.75em;
+		display: inline-block;
+	}
+		
+	.project_details li:last-child {
+		border-right: none;
+		}
+	
+	main a {
+		text-decoration: none;
+		text-align: center;
+		font-size: 1.15em;
+		color: #666600;
+		font-weight: bold;
+		text-shadow: 5px 5px 8px #ccc
+	}
+	
+	main a:hover {
+		text-decoration: underline;
+	}
+	
+	main ul {
+		margin: 0 0 4% 10%;
+	}
+	
+	.grid {
+		margin-top: 2%;
+		display: grid;
+		grid-template-columns: auto auto auto;
+		grid-gap: 20px;
+	}
+	
+	.tour-grid {
+		display: grid;
+		grid-template-columns: auto;
+		grid-gap: 20px;
+	}
+	
+	.pic-text {
+		font-size: 1em;
+		padding: 10px;
+	}
+	
+	aside {
+		font-family: "Roboto Slab", serif;
+		text-align: center;
+		font-size: 1em;
+		padding: 1%;
+		background-color: rgba(204, 204, 204, 0.5);
+		box-shadow: 5px 5px 8px #000;
+		border-radius: 25px;
+	}
+	
+	aside h4 {
+		color: #665D1E;
+		font-weight: bold;
+		font-size: 1.25em;
+	}
+
+	
+	.tel-res-num {
+		font-size: 1.25em;
+	}
+	
+	.map {
+		width: 600px;
+		height: 450px;
+	}
+	
+	/* Tablet viewport style rules for table */
+	table {
+		border: 1px solid #000;
+		border-collapse: collapse;
+		margin: auto;
+		width: 100%;
+	}
+	
+	caption {
+		font-size: 1em;
+		font-weight: bold;
+		padding: 1%;
+	}
+	
+	th, td {
+		font-size:0.75em;
+		border: 1px solid #000;
+		padding: 2%;
+	}
+	
+	th {
+		background-color: #829F82;
+		color: #fff;
+		font-size: .75em;
+	}
+	
+
+	/* Tablet Viewport: Style rule for form element */
+	form {
+		display: block;
+		width: fit-content;
+		margin: 0 auto;
+	}
+	
+	.form {
+		background-color: #EEE8AA;
+	}
+	
+	/* Tablet viewport: Animation */
+	/*for compatability with safari add @webkit*/
+	@-webkit-keyframes text-animation { 
+		0% { font-size:1em; }
+		50% { font-size: 2em; }
+		100% { font-size: 1.35em; }
+	}
+	
+	@keyframes text-animation {
+		0% { font-size:1em; }
+		50% { font-size: 2em; }
+		100% { font-size: 1.35em; }
+	}
+	
+	@-webkit-keyframes type{ 
+	  from { width: 0; } 
+	}
+	
+	@keyframes type{ 
+	  from { width: 0; } 
+	}
+	
+	figcaption {
+		-webkit-animation-name: text-animation;
+		animation-name: text-animation;
+		-webkit-animation-delay: 3s;
+		animation-delay: 3s;
+		-webkit-animation-duration: 5s;
+		animation-duration: 5s;
+	}
+	
+}
+
+/* Media Query for Desktop Viewport */
+@media screen and (min-width:1015px), print {
+	
+	/* Desktop Viewport: Style rule for header */
+	header {
+		width: 25%;
+		float: right;
+		padding-bottom: 0;
+	}
+	
+	/* Desktop Viewport: Style rules for nav area */
+	nav {
+		float: left;
+		padding-left: 5%;
+		width: 70%;
+		margin: 4em 1em 0 0;
+	}
+
+	nav ul {
+		text-align: left;
+	}
+	
+	nav li {
+		border: none;
+	}
+	
+	nav li a {
+		padding: 0.5em 1em;
+	}
+	
+	nav li a:hover {
+		color: #000;
+		background-color: #fff;
+		transform: scale(1.3);
+	}
+	
+	/* Desktop viewport: style rules for main content */
+	main {
+		clear: left;
+		border-radius: 0 0 7px 7px;
+	}
+	
+	main a {
+		text-align: center;
+		font-size: 1.35em;
+		color: #666600;
+		font-weight: bold;
+		text-shadow: 5px 5px 8px #ccc
+	}
+	
+	.project_details li {
+		border-right: 2px solid #829F82;
+	}
+	
+	.cursive_type {
+		font-family: "Playwrite BE VLG", cursive;
+		font-size: 2em;
+		text-align: center;
+		margin: auto;
+		width: 22em;
+		white-space: nowrap;
+		overflow: hidden;
+		animation: type 2s steps(60, end); 
+	}
+	aside {
+		font-family: "Roboto Slab", serif;
+		text-align: center;
+		font-size: 1.25em;
+		padding: 2%;
+		background-color: rgba(204, 204, 204, 0.5);
+		box-shadow: 5px 5px 8px #000;
+		border-radius: 25px;
+	}
+	
+	aside h4 {
+		color: #665D1E;
+		font-weight: bold;
+		font-size: 1.75em;
+	}
+	
+	.form aside {
+		float: left;
+	}
+	
+	.form-grid {
+		margin: auto;
+		padding: 2%;
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-gap: 20px;
+	}
+	
+	main h1 {
+		font-size: 1.8em;
+	}
+	
+	caption {
+		font-size: 1.25em;
+	}
+	th, td {
+		font-size:1.25em;
+	}
+	
+	article h3 {
+		font-size: 1.75em;
+	}
+	
+	.pic-text {
+		font-size: 1.5em;
+		padding: 20px;
+	}
+	
+	.frame {
+		opacity: 0.9;
+	}
+	
+	.frame:hover {
+		opacity: 1;
+		box-shadow: 8px 8px 10px #808080;
+		transform: translateY(10px);
+	}
+	
+	.pop-link {
+		opacity: 0.7;
+	}
+	
+	.pop-link:hover {
+		opacity: 1;
+	}
+	
+	
+}
+
+
+/* Media query for large desktop viewport */
+@media screen and (min-width:1921px) {
+	
+	#container {
+		width:1920px;
+		margin: 0 auto;
+	}
+	
+	table {
+		width: 80%;
+	}
+	
+}
+
+/* Media Query for Print */
+@media print {
+	
+	body {
+		background-color: #fff;
+		color: #000;
+	}
+	
+}
+
+
+/* Style rules for footer content */
+footer .copyright {
+	font-size: 0.75em;
+	text-align: center;
+	color: #fff;
+	padding: 2% 4%;
+	float: left;
+	width: 75%;
+}
+
+footer p a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.social {
+	float: right;
+	width: 20%;
+	padding: 2%;
+}
+
+.social img {
+	display: inline-block;
+	padding: 5%;
+}
+

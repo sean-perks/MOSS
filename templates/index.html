@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- 
+	Student Name: Sean Perks
+	File Nme: template.html
+	Date: June 28th, 2024
+-->
+	
+<html lang="en">
+<head>
+
+	<link rel="stylesheet" href="static/styles.css">
+	<title>MOSS</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Playwrite+BE+VLG:wght@100..400&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+	
+</head>
+<body>
+
+	<div id="container">
+		<!-- Mobile Nav -->
+		<nav class="mobile-nav">
+			<div id="menu-links">
+				<a href="{{ url_for('index') }}">Home</a>
+				<a href="{{ url_for('about') }}">About</a>
+				<a href="{{ url_for('contact') }}">Contact Us</a>
+			</div>
+			
+			<a class="menu-icon" onclick="hamburger()">
+				<div>&#9776;</div>
+			</a>
+		</nav>
+		
+		<!-- Use the header area for this website name or logo -->
+		<header id="logo">
+			<a href="{{ url_for('index') }}"><img src="static/logo2.png" alt="MOSS logo"></a>
+		</header>
+		
+		<!-- Use the nav area to add hyperlinks to other pages within the website -->
+		<nav class="tablet-desktop">
+			<ul>
+				<li><a href="{{ url_for('index') }}">Home</a></li>
+				<li><a href="{{ url_for('about') }}">About</a></li>
+				<li><a href="{{ url_for('contact') }}">Contact</a></li>
+			</ul>
+		</nav>
+		
+		<!-- Hero Image -->
+		<div id="hero" class="tablet-desktop hero">
+			<img src="static/moss_herob.jpg" alt="Montane Pollinators">
+		</div>
+		
+		<!-- Use the main area to add the main content of the webpage -->
+		<main>
+		
+		<div class="mobile">
+				<h2>Welcome to MOSS!</h2>
+				
+				<h3>M</h3>
+				<p>Choose a Project Below</p>
+				<ul class="projects">
+					<li><a href="{{ url_for('project', proj_id='Hebo') }}">Mount Hebo</a></li>
+					<li><a href="reservations.html">Albina Tour</a></li>
+					<li><a href="reservations.html">Landmarks Tour</a></li>
+				</ul>
+				
+				<p>Book Online!</p>
+				<p class="tel-res-link"><a href="reservations.html">Reservations</a></p>
+				<p>Call Us!</p>
+				<p class="tel-res-link"><a href="tel:8145559608">(814) 555-9608</a></p>
+				<p>Message Us!</p>
+				<p class="tel-res-link"><a href="contact.html#send-message">Send Message</a></p>
+				
+				
+			</div>
+			
+			<div id="Intro" class="tablet-desktop">
+			
+				<h3 class="cursive_type">Welcome to MOSS!</h3>
+			
+			
+			
+				<aside>
+					<h4>Hey bb, u look like u need a seed!</h4>
+					<p>Use this Method for Outstanding Seeding Success to track seed selection for RST projects.</p>
+
+					<p><a href="reservations.html" class="res-emphesis">Projects</a></p>
+
+				</aside>
+				
+			</div>
+				
+			<div class="grid">
+				<figure class="frame">
+					<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/osb.jpg" alt="Oregon Silverspot Butterfly"></a>
+					<figcaption class="pic-text">Mount Hebo</figcaption>
+				</figure>
+					
+			</div>
+		</main>
+		
+		<!-- Use the footer area to add website footer content -->
+		<footer>
+			<div class="copyright">
+				<p>&copy; Copyritght 2069. All Rights Pubic.</p>
+				<p><a href="mailto:urmom@urmom.com">ur_mom@ur_mom.com</a></p>
+			</div>
+			
+			<div class="social">
+				<a href="https://www.facebook.com/" target="_blank"><img src="images/facebook-logo.png" alt="black and white Facebook logo"></a>
+				<a href="https://www.twitter.com/" target="_blank"><img src="images/twitter-logo.png" alt="black and white Twitter logo"></a>
+			</div>
+		</footer>
+	
+	</div>
+	<script src="scripts/script.js"></script>
+	
+</body>
+</html> 
