@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!--
+<!-- 
 	Student Name: Sean Perks
 	File Nme: template.html
 	Date: June 28th, 2024
 -->
-
+	
 <html lang="en">
 <head>
 
@@ -15,10 +15,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Playwrite+BE+VLG:wght@100..400&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
-	<script src="static/script.js"></script>
 	<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
-
-
+	
 </head>
 <body>
 
@@ -30,17 +28,17 @@
 				<a href="{{ url_for('about') }}">About</a>
 				<a href="{{ url_for('tools') }}">Tools</a>
 			</div>
-
+			
 			<a class="menu-icon" onclick="hamburger()">
 				<div>&#9776;</div>
 			</a>
 		</nav>
-
+		
 		<!-- Use the header area for this website name or logo -->
 		<header id="logo">
 			<a href="{{ url_for('index') }}"><img src="static/logo2.png" alt="MOSS logo"></a>
 		</header>
-
+		
 		<!-- Use the nav area to add hyperlinks to other pages within the website -->
 		<nav class="tablet-desktop">
 			<ul>
@@ -49,81 +47,57 @@
 				<li><a href="{{ url_for('tools') }}">Tools</a></li>
 			</ul>
 		</nav>
-
+		
 		<!-- Hero Image -->
 		<div id="hero" class="tablet-desktop hero">
 			<img src="static/moss_herob.jpg" alt="Montane Pollinators">
 		</div>
-
+		
 		<!-- Use the main area to add the main content of the webpage -->
 		<main>
-
+		
 		<div class="mobile">
-				<h2>Welcome to MOSS!</h2>
-				{{ table|safe }}
-
-				<p>Choose a Project Below</p>
-
-				<ul class="projects">
-					<li><a href="{{ url_for('project', proj_id='Hebo') }}">Mount Hebo</a></li>
-					<li><a href="{{ url_for('project', proj_id='Hebo') }}">Marys Peak</a></li>
-					<li><a href="{{ url_for('project', proj_id='Hebo') }}">Other Project</a></li>
-				</ul>
-
+            <h3 class="cursive_type">Tools!</h3>
+            <h1>MOSS tools are experimental.</h1>
+				
+						
 		</div>
-
-
+			
 			<div id="Intro" class="tablet-desktop">
+			
+				<h3 class="cursive_type">Tools!</h3>
+				<h1>MOSS tools are experimental.</h1>
 
-				<h3 class="cursive_type">Welcome to MOSS!</h3>
-				<h1>Method for Outstanding Seeding Success</h1>
-
-
-				<aside>
-					<p>This plot is to plan seed collection and discover potential efficiencies in collection timing/grouping.</p>
-					<p>The size of the bubbles correspond to the amount of seed that needs to be collected, the color is the project.</p>
-					<p>The x-axis is the average time the seed has been collected in the past, the y-axis is the seed zone plus ecoregion.</p>
-					<p>* means there was not enough collection data and the date was estimated. ** is a less certain estimation.</p>
-					<div id="plotly-chart"></div>
-					<script>
-						var graph = JSON.parse('{{ graph_json | safe }}');
-						Plotly.newPlot('plotly-chart', graph.data, graph.layout);
-					</script>
-				</aside>
-				<h2>Projects:</h2>
-			<div class="grid">
-				<figure class="frame">
-					<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/osb.jpg" alt="Oregon Silverspot Butterfly"></a>
-					<figcaption class="pic-text">Mount Hebo</figcaption>
-				</figure>
-				<figure class="frame">
-					<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/maryspeak2.jpg" alt="Oregon Silverspot Butterfly"></a>
-					<figcaption class="pic-text">Marys Peak</figcaption>
-				</figure>
-				<figure class="frame">
-					<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/osb.jpg" alt="Oregon Silverspot Butterfly"></a>
-					<figcaption class="pic-text">Another Project</figcaption>
-				</figure>
-
-				</div>
 
 			</div>
+        
+        <a href="{{ url_for('pointonmap') }}">1. Select Point on Map</a>
+        <p>This is a demo that will eventually return the seedzone/ecoregion of the point you select.</p>
+        <a href="{{ url_for('pointonmap') }}">2. Spell Check Latin Names</a>
+        <p>This tool spell checks plant latin names and codes in accordance with USDA Plants Database (Plants3)</p>
+        <a href="{{ url_for('pointonmap') }}">3. Get GBIF Occurance Data</a>
+        <p>Tool to download occurance data from GBIF in bulk by uploading a csv of plants</p>
 
+
+
+			
+		</div>
 		</main>
-
+		
 		<!-- Use the footer area to add website footer content -->
 		<footer>
 			<div class="copyright">
 				<p>&copy; Copyritght 2025. All Rights Pubic.</p>
+				<p><a href="mailto:urmom@urmom.com">ur_mom@ur_mom.com</a></p>
 			</div>
-
+			
 			<div class="social">
-
+				
 			</div>
 		</footer>
-
+	
 	</div>
-
-
+	<script src="scripts/script.js"></script>
+	
 </body>
-</html>
+</html> 

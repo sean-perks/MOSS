@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- 
+<!--
 	Student Name: Sean Perks
 	File Nme: template.html
 	Date: June 28th, 2024
 -->
-	
+
 <html lang="en">
 <head>
 
@@ -25,32 +25,31 @@
 		<nav class="mobile-nav">
 			<div id="menu-links">
 				<a href="{{ url_for('index') }}">Home</a>
-				<a href="about.html">About</a>
-				<a href="contact.html">Contact Us</a>
+				<a href="{{ url_for('about') }}">About</a>
+				<a href="{{ url_for('tools') }}">Tools</a>
 			</div>
-			
+
 			<a class="menu-icon" onclick="hamburger()">
 				<div>&#9776;</div>
 			</a>
 		</nav>
-		
+
 		<!-- Use the header area for this website name or logo -->
 		<header id="logo">
-			<a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='logo2.png') }}" alt="MOSS logo"></a>
+			<a href="{{ url_for('index') }}"><img src="static/logo2.png" alt="MOSS logo"></a>
 		</header>
-		
+
 		<!-- Use the nav area to add hyperlinks to other pages within the website -->
 		<nav class="tablet-desktop">
 			<ul>
 				<li><a href="{{ url_for('index') }}">Home</a></li>
-				<li><a href="about.html">About</a></li>
-				<li><a href="reservations.html">Reservations</a></li>
-				<li><a href="contact.html">Contact Us</a></li>
+				<li><a href="{{ url_for('about') }}">About</a></li>
+				<li><a href="{{ url_for('tools') }}">Tools</a></li>
 			</ul>
 		</nav>
-		
 
-		
+
+
 		<!-- Use the main area to add the main content of the webpage -->
 		<main class="round">
 
@@ -70,85 +69,48 @@
 					<div class="article_wrap tablet-desktop">
 						<h1>{{ proj_info["Title"] }}</h1>
 						<a href="{{ url_for('project', proj_id=project_id) }}"><img src="{{ url_for('static', filename='hebo_hero.jpg') }}" alt="hebo image" class="round"></a>
-						<h2>Project Description:</h2> 
+						<h2>Project Description:</h2>
 						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ proj_info['Description'] }}</p>
 						<h2>Location:</h2>
 						<div id="map">
-	
+
 							<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
 							integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
 							crossorigin=""></script>
 							<script>
 								let map = L.map('map').setView({{ [lat, lon] }}, 13); // Initialize the map at a default location
-			
+
 								// Load and display tile layers
 								L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,}).addTo(map);
-			
+
 								var marker = L.marker({{ [lat, lon] }}).addTo(map);
 							</script>
 						</div>
-					</div>	
+					</div>
 				</article>
 				{% endif %}
-				
-			
 
-			</div>	
-				
-			<div class="tablet-desktop">
-				<table><!--Start Table-->
-					<caption><a href="reservations.html">Reserve a Tour Today!</a></caption>
-					<tr><!-- Row 1-->
-						<th>Tour</th>
-						<th>Duration</th>
-						<th>Transportation</th>
-						<th>Food</th>
-						<th>Price</th>
-					</tr>
-					
-					<tr><!-- Row 2-->
-						<td>Downtown</td>
-						<td>2 Hours</td>
-						<td>Walking</td>
-						<td>None</td>
-						<td>$50</td>
-					</tr>
-					
-					<tr><!-- Row 3-->
-						<td>Albina</td>
-						<td>3 hours</td>
-						<td>Walking/Driving</td>
-						<td>Included</td>
-						<td>$80</td>
-					</tr>
-					
-					<tr><!-- Row 4-->
-						<td>Landmarks Tour</td>
-						<td>4 hours</td>
-						<td>Walking/Driving</td>
-						<td>Included</td>
-						<td>$110</td>
-					</tr>
-				</table>
 			</div>
-			
+
+			<div class="tablet-desktop">
+				{{ mh_table|safe }}
+			</div>
+
 		</main>
-		
+
 		<!-- Use the footer area to add website footer content -->
 		<footer>
 			<div class="copyright">
 				<p>&copy; Copyritght 2021. All Rights Reserved.</p>
-				<p><a href="mailto:sales@portlandhistoricaltours.com">sales@portlandhistoricaltours.com</a></p>
 			</div>
-			
+
 			<div class="social">
-				<a href="https://www.facebook.com/" target="_blank"><img src="images/facebook-logo.png" alt="black and white Facebook logo"></a>
-				<a href="https://www.twitter.com/" target="_blank"><img src="images/twitter-logo.png" alt="black and white Twitter logo"></a>
+
 			</div>
 		</footer>
-	
+
 	</div>
-	<script src="{{ url_for('static', filename='script.js') }}"></script> 
-	
+	<script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
-</html> 
+</html>

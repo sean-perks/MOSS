@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+
+
+</head>
+
+<body>
+    <div id="container">
+		<!-- Mobile Nav -->
+		<nav class="mobile-nav">
+			<div id="menu-links">
+				<a href="{{ url_for('index') }}">Home</a>
+				<a href="{{ url_for('about') }}">About</a>
+				<a href="{{ url_for('tools') }}">Tools</a>
+			</div>
+			
+			<a class="menu-icon" onclick="hamburger()">
+				<div>&#9776;</div>
+			</a>
+		</nav>
+		
+		<!-- Use the header area for this website name or logo -->
+		<header id="logo">
+			<a href="{{ url_for('index') }}"><img src="static/logo2.png" alt="MOSS logo"></a>
+		</header>
+		
+		<!-- Use the nav area to add hyperlinks to other pages within the website -->
+		<nav class="tablet-desktop">
+			<ul>
+				<li><a href="{{ url_for('index') }}">Home</a></li>
+				<li><a href="{{ url_for('about') }}">About</a></li>
+				<li><a href="{{ url_for('tools') }}">Tools</a></li>
+			</ul>
+		</nav>
+
+    <main>
+        <h2>Select a Point on the Map!</h2>
+        <div id="map">
+
+        </div>
+
+        <form id="coordinatesForm" method="post">
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="lon" id="lon">
+            <button type="submit">Submit Coordinates</button>
+        </form>
+
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <script>
+            // If lat/lon are provided, display the marker and zoom in
+            const lat = {{ lat if lat else 'null' }};
+            const lon = {{ lon if lon else 'null' }};
+            if (lat !== null && lon !== null) {
+                displayMarker(lat, lon);
+            }
+        </script>
+    </main>
+</body>
+</html>
