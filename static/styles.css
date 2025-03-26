@@ -211,20 +211,17 @@ article:nth-of-type(2) {
 	height: 50%;
 }
 
-.form {
-	margin: 0 auto;
-	margin-top: 2%;
-	width: fit-content;
-	padding: 2%;
+.form-grid {
+    margin: 3%;
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* Create three columns */
+    align-items: center; /* Center items vertically */
 }
 
-.form-grid {
-	margin: 3%;
-	display: grid;
-	grid-template-columns: auto;
-	grid-gap: 10px;
-	}
-	
+.form-group {
+    display: contents; /* Allow the grid to treat the children as direct children */
+}
+
 #send-message {
 	margin-top: 3%;
 }

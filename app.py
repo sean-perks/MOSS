@@ -9,15 +9,18 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    data = pd.read_csv(r"mysite/2025_needs.csv")
-    fig = static_plot(data)
-    graph_json = pio.to_json(fig)
-    data = data.drop(["Normalized Size", "Seed Zone Ecoregion", "Text Position"], axis=1)
+    proj_species_dict, plant_dict, graph_json, table = build_index_data()
+    return render_template('index.html', proj_species_dict=proj_species_dict, graph_json=graph_json, table = table, plant_dict = plant_dict)
 
-    table = data.to_html(classes='table table-striped', index=False)
+@app.route('/add_seed', methods=["POST", "GET"])
+def add_seed():
+    proj_species_dict, plant_dict, graph_json, table = build_index_data()
 
-    return render_template('index.html', graph_json=graph_json, table = table)
+    if request.method=='POST':
+        species = request.form['species']
+        weight = request.form['weight']
 
+    return render_template('index.html', proj_species_dict=proj_species_dict, graph_json=graph_json, table = table, plant_dict = plant_dict)
 
 @app.route('/project/<proj_id>')
 def project(proj_id):

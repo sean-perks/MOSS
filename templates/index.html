@@ -83,29 +83,48 @@
 					<p>This plot is to plan seed collection and discover potential efficiencies in collection timing/grouping.</p>
 					<p>The size of the bubbles correspond to the amount of seed that needs to be collected, the color is the project.</p>
 					<p>The x-axis is the average time the seed has been collected in the past, the y-axis is the seed zone plus ecoregion.</p>
-					<p>* means there was not enough collection data and the date was estimated. ** is a less certain estimation.</p>
 					<div id="plotly-chart"></div>
 					<script>
 						var graph = JSON.parse('{{ graph_json | safe }}');
 						Plotly.newPlot('plotly-chart', graph.data, graph.layout);
 					</script>
 				</aside>
-				<h2>Projects:</h2>
-			<div class="grid">
-				<figure class="frame">
-					<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/osb.jpg" alt="Oregon Silverspot Butterfly"></a>
-					<figcaption class="pic-text">Mount Hebo</figcaption>
-				</figure>
-				<figure class="frame">
-					<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/maryspeak2.jpg" alt="Oregon Silverspot Butterfly"></a>
-					<figcaption class="pic-text">Marys Peak</figcaption>
-				</figure>
-				<figure class="frame">
-					<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/osb.jpg" alt="Oregon Silverspot Butterfly"></a>
-					<figcaption class="pic-text">Another Project</figcaption>
-				</figure>
+
+				<div class="enter_seed">
+					<form method="POST" action ="{{ url_for('add_seed') }}" class="form-grid">
+						<div class="form-group">
+							<label for="species">Species</label>
+							<select type="text" name="species" id="species">
+								{% for option in plant_dict.Species %}
+									<option value={{ option }}>{{ option }}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="weight">Unclean Weight Collected in Lbs:</label>
+							<input type="number" step="0.01" id="weight" name="weight" required>
+						</div>
+						<button type="submit" id="submit">Enter!</button>
+					</form>
 
 				</div>
+				<!--
+				<h2>Projects:</h2>
+				<div class="grid">
+					<figure class="frame">
+						<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/osb.jpg" alt="Oregon Silverspot Butterfly"></a>
+						<figcaption class="pic-text">Mount Hebo</figcaption>
+					</figure>
+					<figure class="frame">
+						<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/maryspeak2.jpg" alt="Oregon Silverspot Butterfly"></a>
+						<figcaption class="pic-text">Marys Peak</figcaption>
+					</figure>
+					<figure class="frame">
+						<a href="{{ url_for('project', proj_id='Hebo') }}"><img src="static/osb.jpg" alt="Oregon Silverspot Butterfly"></a>
+						<figcaption class="pic-text">Another Project</figcaption>
+					</figure>
+
+				</div> -->
 
 			</div>
 
