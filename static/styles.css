@@ -211,16 +211,6 @@ article:nth-of-type(2) {
 	height: 50%;
 }
 
-.form-grid {
-    margin: 3%;
-    display: grid;
-    grid-template-columns: repeat(2, auto); /* Create three columns */
-    align-items: center; /* Center items vertically */
-}
-
-.form-group {
-    display: contents; /* Allow the grid to treat the children as direct children */
-}
 
 #send-message {
 	margin-top: 3%;
@@ -451,6 +441,25 @@ form #submit {
 	
 	.form {
 		background-color: #EEE8AA;
+	}
+
+	.form-grid {
+		margin: 3%;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr); /* Create three equal columns */
+		grid-gap: 10px; /* Space between grid items */
+		align-items: center; /* Center items vertically */
+	}
+	
+	.form-group {
+		display: flex; /* Use flexbox for label and input alignment */
+		flex-direction: column; /* Stack label above input */
+	}
+	
+	.button-group {
+		grid-column: span 3; /* Make the button span all three columns */
+		text-align: center; /* Center the button */
+		margin-top: 10px; /* Add some space above the button */
 	}
 	
 	/* Tablet viewport: Animation */

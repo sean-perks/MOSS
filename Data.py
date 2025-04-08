@@ -4,6 +4,9 @@ import plotly.express as px
 import plotly.io as pio
 import random
 import pandas as pd
+from datetime import datetime
+import os
+import numpy as np
 
 # save in file
 def write_json(dict, file_path = "StringHarmonics/text/accounts.json"):
@@ -18,7 +21,7 @@ def read_json(file_path = "StringHarmonics/text/accounts.json"):
     
     return my_dict
 
-def build_index_data(needs_csv = r"mysite/2025_needs.csv"):
+def build_index_data(data):
         """ 
         Builds data needed in index html. RETURNS FOUR things. 
         0. proj_species_dict is a dict with project as key and species for that project as list for values
@@ -30,7 +33,8 @@ def build_index_data(needs_csv = r"mysite/2025_needs.csv"):
 
         plant_dict, graph_json, table = build_index_data()
         """
-        data = pd.read_csv(needs_csv)
+        if isinstance(data, str):
+            data = pd.read_csv(data)
         proj_species_dict = {}
         for x in data["Project"].unique():
             proj_species_dict[x] = list(data[data['Project'] == x]['Species'])
@@ -38,10 +42,60 @@ def build_index_data(needs_csv = r"mysite/2025_needs.csv"):
         plant_dict = data.to_dict(orient='list')
         fig = static_plot(data)
         graph_json = pio.to_json(fig)
-        data = data.drop(["Normalized Size", "Seed Zone Ecoregion", "Text Position"], axis=1)
+        to_drop = ["Normalized Size", "Seed Zone Ecoregion", "Text Position"]
+        try:
+            data = data.drop(to_drop, axis=1)
+        except KeyError:
+            pass
 
         table = data.to_html(classes='table table-striped', index=False)
         return proj_species_dict, plant_dict, graph_json, table
+
+
+def add_to_log(log_entry, log_path=r"mysite/2025_needs_csv.json"):
+    current_time = datetime.now()
+    date_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+    if os.path.exists(log_path):
+        log = read_json(log_path)
+    else:
+        log = {}
+    log[date_time] = log_entry
+    print(log)
+
+    write_json(log, log_path)
+
+
+
+def update_needs(project, species, weight, needs_csv = r"mysite/2025_needs.csv"):
+    '''
+    returns a df data that mimics 2025_seed_needs.csv
+    '''
+    data = pd.read_csv(needs_csv)
+    weight = float(weight)
+    log_entry = None
+    for index, row in data.iterrows():
+        if row["Project"] == project and row["Species"] == species:
+            old_weight = row["Lbs Needed"]
+            new_weight = row["Lbs Needed"] - weight
+
+            data.loc[index, 'Lbs Needed'] = new_weight
+            log_entry = {"project": project, 
+                         "species": species, 
+                         "lbs_collected": weight, 
+                         "old_weight": old_weight, 
+                         "new_weight": new_weight}
+            break
+
+    if log_entry:
+        add_to_log(log_entry)
+    
+        data["Normalized Size"] = [np.sqrt(d) * 5 if d > 0 else 0 for d in data["Lbs Needed"]]
+        data.to_csv(needs_csv, index = False)
+
+    return data
+    
+
+
 
 def get_project_data(proj, my_json="mysite/projects.json"):
     all_projects = read_json(my_json)
@@ -63,6 +117,8 @@ def static_plot(
             blob_color="Project",
             title = ""
 ):
+    data = data[data[blob_size_normalized] > 0]
+    data = data[data[blob_size_original] > 0]
     # Plot
     fig = px.scatter(
         data,
@@ -72,7 +128,7 @@ def static_plot(
         color=blob_color,
         text="Species",
         hover_name="Species",
-        hover_data={blob_size_original: True, blob_size_normalized: False},
+        hover_data={blob_size_original: True, blob_size_normalized: False, "Date Accuracy": True},
         title=title,
         size_max=75
     )

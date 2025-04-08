@@ -91,22 +91,31 @@
 				</aside>
 
 				<div class="enter_seed">
-					<form method="POST" action ="{{ url_for('add_seed') }}" class="form-grid">
+					<form method="POST" action="{{ url_for('add_seed') }}" class="form-grid">
+						<div class="form-group">
+							<label for="project">Project</label>
+							<select name="project" id="project">
+								<option value="">Select a project</option>
+								{% for project in proj_species_dict.keys() %}
+									<option value="{{ project }}">{{ project }}</option>
+								{% endfor %}
+							</select>
+						</div>
 						<div class="form-group">
 							<label for="species">Species</label>
-							<select type="text" name="species" id="species">
-								{% for option in plant_dict.Species %}
-									<option value={{ option }}>{{ option }}</option>
-								{% endfor %}
+							<select name="species" id="species">
+								<option value="">Select a species</option>
+								<!-- Species options will be populated based on the selected project -->
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="weight">Unclean Weight Collected in Lbs:</label>
 							<input type="number" step="0.01" id="weight" name="weight" required>
 						</div>
-						<button type="submit" id="submit">Enter!</button>
+						<div class="form-group button-group">
+							<button type="submit" id="submit">Enter!</button>
+						</div>
 					</form>
-
 				</div>
 				<!--
 				<h2>Projects:</h2>
@@ -142,6 +151,35 @@
 		</footer>
 
 	</div>
+	<script>
+		const speciesOptions = {
+			{% for project, species_list in proj_species_dict.items() %}
+				'{{ project }}': [
+					{% for species in species_list %}
+						'{{ species }}'{% if not loop.last %}, {% endif %}
+					{% endfor %}
+				],
+			{% endfor %}
+		};
+	
+		document.getElementById('project').addEventListener('change', function() {
+			const project = this.value;
+			const speciesSelect = document.getElementById('species');
+	
+			// Clear existing options
+			speciesSelect.innerHTML = '<option value="">Select a species</option>';
+	
+			// Populate species based on selected project
+			if (project && speciesOptions[project]) {
+				speciesOptions[project].forEach(function(species) {
+					const option = document.createElement('option');
+					option.value = species;
+					option.textContent = species;
+					speciesSelect.appendChild(option);
+				});
+			}
+		});
+	</script>
 
 
 </body>

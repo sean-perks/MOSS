@@ -3,22 +3,26 @@ from flask import Flask, render_template, redirect, url_for, request
 
 import pandas as pd
 from Data import *
-
+NEEDS_CSV = r"mysite/2025_needs.csv"
 
 app = Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    proj_species_dict, plant_dict, graph_json, table = build_index_data()
+    proj_species_dict, plant_dict, graph_json, table = build_index_data(NEEDS_CSV)
     return render_template('index.html', proj_species_dict=proj_species_dict, graph_json=graph_json, table = table, plant_dict = plant_dict)
 
 @app.route('/add_seed', methods=["POST", "GET"])
 def add_seed():
-    proj_species_dict, plant_dict, graph_json, table = build_index_data()
+    #proj_species_dict, plant_dict, graph_json, table = build_index_data()
 
     if request.method=='POST':
+        project = request.form['project']
         species = request.form['species']
         weight = request.form['weight']
+        data = update_needs(project, species, weight)
+
+        proj_species_dict, plant_dict, graph_json, table = build_index_data(data)
 
     return render_template('index.html', proj_species_dict=proj_species_dict, graph_json=graph_json, table = table, plant_dict = plant_dict)
 
