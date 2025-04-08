@@ -52,7 +52,7 @@ def build_index_data(data):
         return proj_species_dict, plant_dict, graph_json, table
 
 
-def add_to_log(log_entry, log_path=r"mysite/2025_needs_csv.json"):
+def add_to_log(log_entry, log_path=r"mysite/2025_needs_csv_log.json"):
     current_time = datetime.now()
     date_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
     if os.path.exists(log_path):
